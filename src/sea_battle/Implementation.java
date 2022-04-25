@@ -2,15 +2,15 @@ package sea_battle;
 
 import java.util.*;
 
-//  в классах player2, player1, player внизу оставлены образцы координат))
-//  в классе player2 оставленны координаты  ошибками расстановки
+//  в классе Player внизу(ниже 450 строки) оставлены образцы координат))
+
 
 public class Implementation {
 
     public static void main(String[] args) {
 
-        Player1 player1 = new Player1("Player 1");
-        Player2 player2 = new Player2("Player 2");
+        Player player1 = new Player("Player 1");
+        Player player2 = new Player("Player 2");
 
 
 //        long start = System.currentTimeMillis();
