@@ -12,23 +12,14 @@ public class Implementation {
         Player player1 = new Player("Player 1");
         Player player2 = new Player("Player 2");
 
-
-//        long start = System.currentTimeMillis();
-
         player1.printEmptyAndFirstText();
         player1.fillField();
-
-//        long end = System.currentTimeMillis();
 
         player2.printEmptyAndFirstText();
         player2.fillField();
 
-//        System.out.println("--------------------------------------------------");
-//        System.out.println("Время: "+ (end-start));
-//        System.out.println("--------------------------------------------------");
 
         System.out.println(play(player1,player2));
-
 
     }
 
@@ -40,8 +31,6 @@ public class Implementation {
         } else {
             player2.striking(player1);
         }
-
-
 
         if (player2.getCountOfAllDecks() == 0){
 
