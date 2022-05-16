@@ -1,9 +1,14 @@
 package itmanStudy;
 
-public class Round {
+/*
+Напишите функцию, которая принимает вещественное число,
+и возвращает целое число округленное к ближайшему целому.
+ */
+
+public class MyRound {
     public static void main(String[] args) {
 
-        System.out.println(round(0));
+        System.out.println(round(2.3));
     }
 
     public static int round(double x) {
