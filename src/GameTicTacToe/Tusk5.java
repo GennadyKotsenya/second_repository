@@ -1,4 +1,12 @@
 package GameTicTacToe;
+/*
+Применим нашу функцию определения победителя, к нашей предыдущей программе.
+Как только победитель или ничья могут быть определены программа должна завершится с надписью:
+
+Draw — когда партия сыграна в ничью
+Win player 1 (X) — когда победил первый игрок
+Win player 2 (0) — когда победил второй игрок
+ */
 
 import java.util.Scanner;
 
@@ -15,12 +23,6 @@ public class Tusk5 {
         int finalResult;
 
         print(arraySymbols);
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-
-                arraySymbols[i][j] = 0;
-            }
-        }
 
         System.out.println();
 

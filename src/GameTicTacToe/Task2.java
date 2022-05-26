@@ -1,4 +1,19 @@
 package GameTicTacToe;
+/*
+Теперь научимся выводить поле более красиво.
+
+Для этого напишем универсальную функцию,
+которая принимает матрицу целых чисел N*N (1 <= N <= 300), значения могут быть:
+
+0 — клетка свободна
+1 — клетка занята первым игроком
+2 — клетка занята вторым игроком
+Функция должна выводить отформатированное поле:
+
+каждая клетка должна быть размером 3 столбца и 1 строка (без учета границ).
+символ X или 0 должны располагаться по центру
+для рамки использовать следующие символы: ━, ┃, ╋.
+ */
 
 public class Task2 {
     public static void main(String[] args) {
@@ -34,34 +49,23 @@ public class Task2 {
             }
         }
 
-//        System.out.println(grid.length);
-//        System.out.println(grid2.length);
-//        System.out.println(newGrid.length);
         for (int i = 0; i < grid2.length; i++) {
             for (int j = 0; j < grid2[i].length; j++) {
 
                 newGrid[i + i][j + j] = grid2[i][j];
-//                System.out.println("newGrid["+(i + i)+"]["+(j + j)+"] = grid2["+i+"]["+j+"] = " + newGrid[i + i][j + j]+" = " + grid2[i][j]);
-
-
 
                 if(j == grid2.length - 1 && i != grid2.length - 1){
                     newGrid[i + i + 1][j + j] = "━━";
-//                    System.out.println("newGrid["+(i + i + 1)+"]["+(j + j)+"] = \"━━\" = " + newGrid[i + i + 1][j + j]);
                 } else if(i == grid2.length - 1 && j != grid2.length - 1){
                     newGrid[i + i][j + j + 1] = "┃";
-//                    System.out.println("newGrid["+(i + i)+"]["+(j + j + 1)+"] = \"┃\" = " + newGrid[i + i][j + j + 1]);
                 } else if(i != grid2.length - 1 && j != grid2.length - 1){
                     newGrid[i + i + 1][j + j + 1] = "━╋━";
-//                    System.out.println(" newGrid["+(i + i + 1)+"]["+(j + j + 1)+"] = \"━╋━\" = " + newGrid[i + i + 1][j + j + 1]);
                     if(j == 0) {
                         newGrid[i + i + 1][j + j] = "━━";
                     } else {
                         newGrid[i + i + 1][j + j] = "━";
                     }
-//                    System.out.println("newGrid["+(i + i + 1)+"]["+(j + j)+"] = \"━━\" = " + newGrid[i + i + 1][j + j]);
                     newGrid[i + i][j + j + 1] = "┃";
-//                    System.out.println("newGrid["+(i + i)+"]["+(j + j + 1)+"] = \"┃\" = " + newGrid[i + i][j + j + 1]);
                 }
 
             }

@@ -1,5 +1,9 @@
 package GameTicTacToe;
 
+/*
+Применим к первой программе функцию, которую мы написали в предыдущей задаче.
+ */
+
 import java.util.Scanner;
 
 public class Task3 {
