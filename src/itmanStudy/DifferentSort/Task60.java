@@ -1,4 +1,4 @@
-package itmanStudy.Sort;
+package itmanStudy.DifferentSort;
 
 import java.util.Scanner;
 

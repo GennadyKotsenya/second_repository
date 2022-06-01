@@ -1,4 +1,4 @@
-package itmanStudy.Sort;
+package itmanStudy.DifferentSort;
 
 public class SelectionSortDescend {
     public static void main(String[] args) {

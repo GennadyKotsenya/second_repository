@@ -1,4 +1,4 @@
-package itmanStudy.Sort;
+package itmanStudy.DifferentSort;
 
 public class BubbleSort {
     public static void main(String[] args) {
@@ -6,7 +6,7 @@ public class BubbleSort {
 
         for (int n = a.length; n > 1; n--) {
             for (int i = 1; i < n; i++) {
-                if (a[i - 1] > a[i]) {
+                if (a[i - 1] < a[i]) {
                     int t = a[i - 1];
                     a[i - 1] = a[i];
                     a[i] = t;
