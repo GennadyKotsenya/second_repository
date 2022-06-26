@@ -1,70 +1,33 @@
-package GameTicTacToe;
-
+package itmanStudy.TicTacToeDevelopment;
 /*
-Применим к первой программе функцию, которую мы написали в предыдущей задаче.
+Теперь научимся выводить поле более красиво.
+
+Для этого напишем универсальную функцию,
+которая принимает матрицу целых чисел N*N (1 <= N <= 300), значения могут быть:
+
+0 — клетка свободна
+1 — клетка занята первым игроком
+2 — клетка занята вторым игроком
+Функция должна выводить отформатированное поле:
+
+каждая клетка должна быть размером 3 столбца и 1 строка (без учета границ).
+символ X или 0 должны располагаться по центру
+для рамки использовать следующие символы: ━, ┃, ╋.
  */
 
-import java.util.Scanner;
-
-public class Task3 {
+public class Task2 {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+//        int[][] grid = {{ 2, 0, 1 },
+//                        { 0, 1, 2 },
+//                        { 1, 0, 0 }};
+        int[][] grid = new int[3][3];
+//        int[][] grid = {{ 1, 2 }, { 2, 1 }};
+//        int[][] grid = {{1}};
+//        int[][] grid = {{0}};
 
-        int[][] arraySymbols = new int[3][3];
 
-        int column;
-        int row;
-        int counter = 0;
-
-        print(arraySymbols);
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-
-                arraySymbols[i][j] = 0;
-            }
-        }
-
-        System.out.println();
-
-        System.out.println("Player 1 (X) turn. "
-                +"Enter column and row (between 1 and 3): ");
-
-        System.out.println();
-
-        while(scanner.hasNextInt()){
-
-            column = scanner.nextInt() - 1;
-            row = scanner.nextInt() - 1;
-
-            if(counter % 2 == 0){
-
-                arraySymbols[column][row] = 1;
-
-            } else {
-                arraySymbols[column][row] = 2;
-            }
-            print(arraySymbols);
-            System.out.println();
-
-            if(counter % 2 == 0){
-
-                System.out.println("Player 2 (0) turn. "
-                        +"Enter column and row (between 1 and 3):");
-
-                System.out.println();
-            } else {
-
-                System.out.println("Player 1 (X) turn. "
-                        +"Enter column and row (between 1 and 3): ");
-
-                System.out.println();
-
-            }
-            counter++;
-        }
-
-        System.out.println("Draw");
+        print(grid);
 
     }
 
@@ -77,7 +40,11 @@ public class Task3 {
         for (int i = 0; i < grid2.length; i++) {
             for (int j = 0; j < grid2[i].length; j++) {
 
-                grid2[i][j] = String.valueOf(grid[i][j]);
+                if (grid.length > i && grid[0].length > j) {
+
+                    grid2[i][j] = String.valueOf(grid[i][j]);
+
+                } else grid2[i][j] = "0";
 
             }
         }
@@ -119,5 +86,7 @@ public class Task3 {
             }
             System.out.println();
         }
+
+        System.out.println();
     }
 }

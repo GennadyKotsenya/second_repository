@@ -1,4 +1,4 @@
-package sea_battle;
+package consol_games.GameSeaBattle;
 
 import java.util.Objects;
 

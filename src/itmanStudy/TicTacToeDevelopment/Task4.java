@@ -1,134 +1,36 @@
-package GameTicTacToe;
+package itmanStudy.TicTacToeDevelopment;
 /*
-Применим нашу функцию определения победителя, к нашей предыдущей программе.
-Как только победитель или ничья могут быть определены программа должна завершится с надписью:
+Научимся определять победителя.
 
-Draw — когда партия сыграна в ничью
-Win player 1 (X) — когда победил первый игрок
-Win player 2 (0) — когда победил второй игрок
+Для этого напишем универсальную функцию,
+которая принимает матрицу целых чисел N*N (1 <= N <= 300), значения могут быть:
+
+0 — клетка свободна
+1 — клетка занята первым игроком
+2 — клетка занята вторым игроком
+Функция должна возвращать:
+
+1, если есть выигрышная комбинация для первого игрока
+2, если есть выигрышная комбинация для второго игрока
+-1, если уже никто победить не сможет (присутствуют 1 и 2 на любой строке, столбце, диагоналях)
+0, если победителя еще нельзя определить
+Выигрышная комбинация — вся строка или столбец, или диагональ заняты одним игроком.
  */
-
-import java.util.Scanner;
-
-public class Tusk5 {
+public class Task4 {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-
-        int[][] arraySymbols = new int[3][3];
-
-        int column;
-        int row;
-        int counter = 0;
-        int finalResult;
-
-        print(arraySymbols);
-
-        System.out.println();
-
-        System.out.println("Player 1 (X) turn. "
-                +"Enter column and row (between 1 and 3): ");
-
-        System.out.println();
-
-        while(scanner.hasNextInt()){
-
-            column = scanner.nextInt() - 1;
-            row = scanner.nextInt() - 1;
-
-            if(counter % 2 == 0){
-
-                arraySymbols[column][row] = 1;
-
-            } else {
-                arraySymbols[column][row] = 2;
-            }
-            print(arraySymbols);
-            finalResult = determineWinner(arraySymbols);
-            System.out.println();
-
-            if(finalResult == 1){
-                System.out.println("Win player 1 (X) ");
-                return;
-            } else if(finalResult == 2){
-                System.out.println("Win player 2 (0) ");
-                return;
-            } else if(finalResult == -1){
-                System.out.println("Draw");
-                return;
-            }
+        int[][] grid = {{2, 1, 2},
+                        {2, 1, 1},
+                        {1, 2, 0}};
 
 
-            if(counter % 2 == 0){
+//        int[][] grid = { {0, 2, 2, 1, 0},
+//                         {1, 0, 1, 0, 2},
+//                         {2, 1, 1, 2, 0},
+//                         {1, 2, 0, 2, 1},
+//                         {0, 2, 0, 1, 0} }  ;
 
-                System.out.println("Player 2 (0) turn. "
-                        +"Enter column and row (between 1 and 3):");
-
-                System.out.println();
-            } else {
-
-                System.out.println("Player 1 (X) turn. "
-                        +"Enter column and row (between 1 and 3): ");
-
-                System.out.println();
-
-            }
-            counter++;
-        }
-        System.out.println("Draw");
-    }
-
-    public static void print(int[][] grid) {
-
-        String[][] grid2 = new String[grid.length][grid.length];
-
-        String[][] newGrid = new String[grid.length + (grid.length - 1)][grid.length + (grid.length - 1)];
-
-        for (int i = 0; i < grid2.length; i++) {
-            for (int j = 0; j < grid2[i].length; j++) {
-
-                grid2[i][j] = String.valueOf(grid[i][j]);
-
-            }
-        }
-
-        for (int i = 0; i < grid2.length; i++) {
-            for (int j = 0; j < grid2[i].length; j++) {
-
-                newGrid[i + i][j + j] = grid2[i][j];
-
-                if(j == grid2.length - 1 && i != grid2.length - 1){
-                    newGrid[i + i + 1][j + j] = "━━";
-                } else if(i == grid2.length - 1 && j != grid2.length - 1){
-                    newGrid[i + i][j + j + 1] = "┃";
-                } else if(i != grid2.length - 1 && j != grid2.length - 1){
-                    newGrid[i + i + 1][j + j + 1] = "━╋━";
-                    if(j == 0) {
-                        newGrid[i + i + 1][j + j] = "━━";
-                    } else {
-                        newGrid[i + i + 1][j + j] = "━";
-                    }
-                    newGrid[i + i][j + j + 1] = "┃";
-                }
-
-            }
-        }
-
-        for (int i = 0; i < newGrid.length; i++) {
-            for (int j = 0; j < newGrid[i].length; j++) {
-
-                if ("0".equals(newGrid[i][j])) {
-                    System.out.print("   ");
-                } else if ("1".equals(newGrid[i][j])) {
-                    System.out.print(" X ");
-                } else if ("2".equals(newGrid[i][j])) {
-                    System.out.print(" 0 ");
-                } else {
-                    System.out.print(newGrid[i][j]);
-                }
-            }
-            System.out.println();
-        }
+        System.out.println(determineWinner(grid));
     }
 
     public static int determineWinner(int[][] grid) {
@@ -273,7 +175,9 @@ public class Tusk5 {
                         return uncertainty;
                     }
                 }
+
             }
+
         }
         counterX = 0;
         counterO = 0;

@@ -1,4 +1,4 @@
-package sea_battle;
+package consol_games.GameSeaBattle;
 
 public enum FillCharacters {
     EMPTY(".-. "), SHIP_DECK("8,8 "), HALO(" -  "),

@@ -1,4 +1,4 @@
-package GameTicTacToe;
+package itmanStudy.TicTacToeDevelopment;
 /*
 Для начала научимся считывать ходы игроков и выводить поле крестиков-ноликов.
 

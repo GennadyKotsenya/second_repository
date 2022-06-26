@@ -1,25 +1,24 @@
-package GameTicTacToe;
+package itmanStudy.TicTacToeDevelopment;
 /*
-Последний шаг. Осталось применить нашу функцию parseMove.
+Применим нашу функцию определения победителя, к нашей предыдущей программе.
+Как только победитель или ничья могут быть определены программа должна завершится с надписью:
 
-В случае если пользователь неверно ввел данные (функция вернула null),
-программа должна напечатать: Incorrect input.. И повторно показать подсказку, чей сейчас ход.
-
-Также программа должна проверять, что клетка в которую походил игрок — свободна.
-Иначе программа должна написать: Cell should be empty.. И повторно показать подсказку, чей сейчас ход.
-
-Пригодиться метод scanner.hasNextLine(), который возвращает true, если на входе есть еще строки.
-Иначе возвращает false.
+Draw — когда партия сыграна в ничью
+Win player 1 (X) — когда победил первый игрок
+Win player 2 (0) — когда победил второй игрок
  */
+
 import java.util.Scanner;
 
-public class Tusk7 {
+public class Tusk5 {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
         int[][] arraySymbols = new int[3][3];
 
+        int column;
+        int row;
         int counter = 0;
         int finalResult;
 
@@ -28,59 +27,54 @@ public class Tusk7 {
         System.out.println();
 
         System.out.println("Player 1 (X) turn. "
-                + "Enter column and row (between 1 and 3): ");
+                +"Enter column and row (between 1 and 3): ");
 
+        System.out.println();
 
-        while (scanner.hasNextLine()) {
+        while(scanner.hasNextInt()){
 
-            Cell cell = parseMove(scanner.nextLine());
+            column = scanner.nextInt() - 1;
+            row = scanner.nextInt() - 1;
 
-            if (cell == null) {
+            if(counter % 2 == 0){
 
-                System.out.println("Incorrect input.");
-                System.out.println();
-
-                printHintLine(counter, 1);
-                continue;
-            }
-
-            if (arraySymbols[cell.col - 1][cell.row - 1] != 0) {
-
-                System.out.println("Cell should be empty.");
-                System.out.println();
-
-                printHintLine(counter, 1);
-                continue;
-            }
-
-            if (counter % 2 == 0) {
-
-                arraySymbols[cell.col - 1][cell.row - 1] = 1;
+                arraySymbols[column][row] = 1;
 
             } else {
-                arraySymbols[cell.col - 1][cell.row - 1] = 2;
+                arraySymbols[column][row] = 2;
             }
-            System.out.println();
             print(arraySymbols);
             finalResult = determineWinner(arraySymbols);
             System.out.println();
 
-            if (finalResult == 1) {
+            if(finalResult == 1){
                 System.out.println("Win player 1 (X) ");
                 return;
-            } else if (finalResult == 2) {
+            } else if(finalResult == 2){
                 System.out.println("Win player 2 (0) ");
                 return;
-            } else if (finalResult == -1) {
+            } else if(finalResult == -1){
                 System.out.println("Draw");
                 return;
             }
 
 
-            printHintLine(counter, 0);
+            if(counter % 2 == 0){
+
+                System.out.println("Player 2 (0) turn. "
+                        +"Enter column and row (between 1 and 3):");
+
+                System.out.println();
+            } else {
+
+                System.out.println("Player 1 (X) turn. "
+                        +"Enter column and row (between 1 and 3): ");
+
+                System.out.println();
+
+            }
             counter++;
         }
-        System.out.println();
         System.out.println("Draw");
     }
 
@@ -103,13 +97,13 @@ public class Tusk7 {
 
                 newGrid[i + i][j + j] = grid2[i][j];
 
-                if (j == grid2.length - 1 && i != grid2.length - 1) {
+                if(j == grid2.length - 1 && i != grid2.length - 1){
                     newGrid[i + i + 1][j + j] = "━━";
-                } else if (i == grid2.length - 1 && j != grid2.length - 1) {
+                } else if(i == grid2.length - 1 && j != grid2.length - 1){
                     newGrid[i + i][j + j + 1] = "┃";
-                } else if (i != grid2.length - 1 && j != grid2.length - 1) {
+                } else if(i != grid2.length - 1 && j != grid2.length - 1){
                     newGrid[i + i + 1][j + j + 1] = "━╋━";
-                    if (j == 0) {
+                    if(j == 0) {
                         newGrid[i + i + 1][j + j] = "━━";
                     } else {
                         newGrid[i + i + 1][j + j] = "━";
@@ -304,56 +298,5 @@ public class Tusk7 {
         }
 
         return draw;
-    }
-
-    public static class Cell {
-        public int row;
-        public int col;
-    }
-
-    public static Cell parseMove(String line) {
-
-        char[] arrayCr = line.toCharArray();
-
-        if (arrayCr.length < 3) {
-            return null;
-        }
-
-        Cell cell = new Cell();
-        int counterInts = 0;
-
-        for (int i = 0; i < arrayCr.length; i++) {
-            if (arrayCr[i] != 32 && arrayCr[i] < 48 || arrayCr[i] > 52) {
-                return null;
-            }
-            if (arrayCr[i] > 48 && arrayCr[i] < 52) {
-                counterInts++;
-                cell.row = Character.getNumericValue(arrayCr[i]);
-            }
-            if (i == arrayCr.length - 1 && counterInts != 2) {
-                return null;
-            }
-        }
-        for (int i = arrayCr.length - 1; i >= 0; i--) {
-
-
-            if (arrayCr[i] > 48 && arrayCr[i] < 52) {
-                cell.col = Character.getNumericValue(arrayCr[i]);
-            }
-        }
-
-        return cell;
-    }
-
-    public static void printHintLine(int counter, int x) {
-        if (counter % 2 == x) {
-
-            System.out.println("Player 2 (0) turn. "
-                    + "Enter column and row (between 1 and 3):");
-        } else {
-
-            System.out.println("Player 1 (X) turn. "
-                    + "Enter column and row (between 1 and 3): ");
-        }
     }
 }
